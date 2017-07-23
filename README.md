@@ -168,3 +168,26 @@ Then with this response, you will only receive `uri`, `name`, and the `pictures`
 ## Legacy Python Library
 
 An earlier version of this library used a more complicated ORM syntax. This library is still available from this github repo via the [orm-tornado](https://github.com/vimeo/vimeo.py/releases/tag/orm-tornado) tag.
+
+
+###Put/Patch settins  example
+```python
+v.patch('/videos/{video_id}'.format(video_id='226434571'),
+                data={'name': video_name,
+                      'privacy': {'add': 'true',
+                                  'download': 'false',
+                                  'comments': 'nobody',
+                                  'embed': 'whitelist'},
+
+                      'embed': {'buttons.watchlater': 'false',
+                                'playbar': 'true',
+                                'volume': 'true',
+                                'buttons': {'fullscreen': 'true',
+                                            'share': 'false',
+                                            'like': 'false',
+                                            'embed': 'false'}
+                                },
+                        'logos': {'vimeo': 'false'}
+                      })
+v.put('{video_id}/privacy/domains/{domain}'.format(video_id='226434571', domain='localhost:8000'))                      
+```                      
